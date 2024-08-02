@@ -15,10 +15,10 @@ jobs:
         # Put your action repo here
         uses: razorpay/armory/TestGen-llm/TestGen-cover-agent-ci@TestGen-llm
         env:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.GH_TOKEN }}
         with:
           sourceDir: ${{ github.workspace }}
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          githubToken: ${{ secrets.GH_TOKEN }}
           apiEndpoint: "https://dev-prod-codereview.openai.azure.com/openai/deployments/gpt-latest"
           modelName: "gpt-4-turbo"
           maxIterations: 5
