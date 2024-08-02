@@ -29,7 +29,7 @@ func factorial(n int) int {
 	}
 	return result
 }
-
+//
 func isPrime(n int) bool {
 	if n <= 1 {
 		return false
