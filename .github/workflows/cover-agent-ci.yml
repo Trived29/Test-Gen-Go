@@ -16,6 +16,7 @@ jobs:
         uses: razorpay/armory/TestGen-llm/TestGen-cover-agent-ci@TestGen-llm
         env:
           githubToken: ${{ secrets.GH_TOKEN }}
+          WAND_API_KEY: ${{ secrets.API_KEY }}
         with:
           sourceDir: ${{ github.workspace }}
           githubToken: ${{ secrets.GH_TOKEN }}
