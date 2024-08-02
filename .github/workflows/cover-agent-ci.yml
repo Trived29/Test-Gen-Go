@@ -1,0 +1,28 @@
+name: Integration Test
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: "0"
+
+      - name: Self test
+        id: selftest
+        # Put your action repo here
+        uses: razorpay/armory/TestGen-llm/TestGen-cover-agent-ci@TestGen-llm
+        env:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          sourceDir: ${{ github.workspace }}
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          apiEndpoint: "https://dev-prod-codereview.openai.azure.com/openai/deployments/gpt-latest"
+          modelName: "gpt-4-turbo"
+          maxIterations: 5
+          desiredCoverage: 60
+      - name: Check outputs
+        run: |
+          test "${{ steps.selftest.outputs.changes }}"
