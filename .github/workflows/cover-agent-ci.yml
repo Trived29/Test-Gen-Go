@@ -9,11 +9,13 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: "0"
-
+      - name: Configure Git to use PAT
+        shell: sh
+        run: git config --global url."https://${{ secrets.GH_TOKEN }}@github.com/".insteadOf "https://github.com/"
       - name: Self test
         id: selftest
         # Put your action repo here
-        uses: razorpay/armory/TestGen-llm/TestGen-cover-agent-ci@TestGen-llm
+        uses: kousikmitra/cover-agent-ci@main
         env:
           githubToken: ${{ secrets.GH_TOKEN }}
           WAND_API_KEY: ${{ secrets.API_KEY }}
